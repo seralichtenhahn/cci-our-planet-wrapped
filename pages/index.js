@@ -18,7 +18,13 @@ export default function Home() {
   }, [])
 
   return (
-    <div>
+    <div className="w-full h-full bg-gradient-to-r from-cyan-200 to-cyan-400 p-4">
+      <h1 className="font-black text-6xl uppercase leading-none text-transparent bg-clip-text text-center bg-gradient-to-r from-green-500 to-green-700 drop-shadow-xl">
+        Our Planet{' '}
+        <span className="bg-clip-padding inline-block text-transparent">
+          Wrapped
+        </span>
+      </h1>
       <svg ref={ref} />
     </div>
   )
