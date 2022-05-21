@@ -1,0 +1,21 @@
+{
+  "name": "Our Planet Wrapped",
+  "short_name": "Wrapped",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#039712",
+  "background_color": "#00092C",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait"
+}

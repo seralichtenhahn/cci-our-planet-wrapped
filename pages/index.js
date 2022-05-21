@@ -10,7 +10,7 @@ export default function Home() {
 
   useEffect(() => {
     const svgElement = d3.select(ref.current)
-    svgElement.append('circle').attr('cx', 150).attr('cy', 70).attr('r', 50)
+    svgElement.append('circle')
 
     return () => {
       svgElement.select('circle').remove()
