@@ -1,7 +1,6 @@
-import * as path from 'path'
-
+import NFA_2018_Detailed from '@/data/NFA_2018_Detailed.csv'
+import NFA_Historical from '@/data/NFA_Historical.csv'
 import { groupBy } from 'lodash'
-import { loadCsv } from '@/utils/server'
 
 export default async function handler(req, res) {
   const { country } = req.query
@@ -13,17 +12,12 @@ export default async function handler(req, res) {
     return
   }
 
-  const basePath = path.join(__dirname, `../../../../../data`)
-
-  const allHistoricalData = await loadCsv(`${basePath}/NFA_Historical.csv`)
-  const allDetailedData = await loadCsv(`${basePath}/NFA_2018_Detailed.csv`)
-
-  const detailedData = allDetailedData.find(
+  const detailedData = NFA_2018_Detailed.find(
     (entry) => entry.Country.toLowerCase() === country.toLowerCase(),
   )
 
   const historicalDataByYear = groupBy(
-    allHistoricalData.filter(
+    NFA_Historical.filter(
       (entry) => entry.Country.toLowerCase() === country.toLowerCase(),
     ),
     'Year',
