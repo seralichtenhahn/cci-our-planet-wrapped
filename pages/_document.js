@@ -32,9 +32,9 @@ class MyDocument extends Document {
             sizes="16x16"
             href="/favicon-16x16.png"
           />
-          <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#039712" />
-          <meta name="msapplication-TileColor" content="#039712" />
-          <meta name="theme-color" content="#039712" />
+          <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#00092C" />
+          <meta name="msapplication-TileColor" content="#00092C" />
+          <meta name="theme-color" content="#00092C" />
           <link rel="manifest" href="/manifest.json" />
           <meta property="og:type" content="website" />
           <meta property="og:title" content="Our Planet Wrapped" />
