@@ -15,6 +15,7 @@ export default function TransitionWrapper({ children }) {
       animate="enter" // Animated state to variants.enter
       exit="exit" // Exit state (used later) to variants.exit
       transition={{ type: 'spring' }} // Set the transition to linear
+      className="w-full h-full"
     >
       {children}
     </motion.div>
