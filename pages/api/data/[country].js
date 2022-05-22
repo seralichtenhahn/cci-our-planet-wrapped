@@ -30,9 +30,9 @@ export default async function handler(req, res) {
       year: parseInt(year, 10),
       types: entries.map((entry) => ({
         land_type: entry.Land_type,
-        national_yield: parseFloat(entry.National_Yield),
-        world_yield: parseFloat(entry.World_Yield),
-        yield_factor: parseFloat(entry.Yield_Factor),
+        national_yield: entry.National_Yield,
+        world_yield: entry.World_Yield,
+        yield_factor: entry.Yield_Factor,
       })),
     }
   })

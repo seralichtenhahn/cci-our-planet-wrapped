@@ -8,6 +8,9 @@
       "@/layouts/*": [
         "layouts/*"
       ],
+      "@/hooks/*": [
+        "hooks/*"
+      ],
       "@/styles/*": [
         "styles/*"
       ],

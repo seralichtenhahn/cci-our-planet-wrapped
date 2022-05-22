@@ -1,31 +1,36 @@
-import * as d3 from 'd3'
-
-import { useEffect, useRef } from 'react'
-
-import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Home() {
-  const ref = useRef()
-
-  useEffect(() => {
-    const svgElement = d3.select(ref.current)
-    svgElement.append('circle')
-
-    return () => {
-      svgElement.select('circle').remove()
-    }
-  }, [])
-
   return (
-    <div className="w-full h-full bg-gradient-to-r from-cyan-200 to-cyan-400 p-4">
-      <h1 className="font-black text-6xl uppercase leading-none text-transparent bg-clip-text text-center bg-gradient-to-r from-green-500 to-green-700 drop-shadow-xl">
-        Our Planet{' '}
-        <span className="bg-clip-padding inline-block text-transparent">
-          Wrapped
-        </span>
+    <div className="flex flex-col w-full h-full gap-6 px-8 py-8 text-white bg-primary-dark">
+      <div className="relative max-w-xl aspect-square">
+        <Image src="/images/earth.svg" alt="Our planet" layout="fill" />
+      </div>
+      <h1 className="text-4xl font-black text-center uppercase">
+        Our Planet Wrapped
       </h1>
-      <svg ref={ref} />
+      <div className="flex-1 mx-auto">
+        <Link href="/start">
+          <a className="relative inline-block group focus:outline-none focus:ring">
+            <span className="absolute inset-0 transition-transform translate-x-1.5 translate-y-1.5 bg-green-700 group-hover:translate-y-0 group-hover:translate-x-0"></span>
+
+            <span className="relative inline-block px-8 py-3 text-sm font-bold tracking-widest text-white uppercase border-2 border-current group-active:text-opacity-75">
+              Get Started
+            </span>
+          </a>
+        </Link>
+      </div>
+      <p className="text-center text-gray-400">
+        A project by Serafin Lichtenhahn<span className="mx-2">·</span>Data by{' '}
+        <a
+          href="https://www.footprintnetwork.org/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Footprint Network
+        </a>
+      </p>
     </div>
   )
 }

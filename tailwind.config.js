@@ -9,6 +9,10 @@ module.exports = {
       fontFamily: {
         sans: ['Inter', 'Helvetica', 'Arial', 'sans-serif'],
       },
+      colors: {
+        'primary-dark': '#00092C',
+        'accent-green': '#8fe673',
+      },
     },
   },
   plugins: [],
