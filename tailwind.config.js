@@ -11,7 +11,10 @@ module.exports = {
       },
       colors: {
         'primary-dark': '#00092C',
-        'accent-green': '#8fe673',
+        'primary-orange': '#F35B04',
+        'secondary-green': '#034732',
+        'secondary-yellow': '#E0A458',
+        'accent-green': '#008148',
       },
     },
   },
