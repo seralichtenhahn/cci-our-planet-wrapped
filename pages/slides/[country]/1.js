@@ -1,8 +1,16 @@
+import Loader from '@/components/Loader'
 import React from 'react'
 import SlideNavigation from '@/components/SlideNavigation'
 import TransitionWrapper from '@/components/TransitionWrapper'
+import useCountry from '@/hooks/useCountry'
 
 export default function Country() {
+  const { data } = useCountry()
+
+  if (!data) {
+    return <Loader />
+  }
+
   return (
     <>
       <SlideNavigation currentPage={2} />
