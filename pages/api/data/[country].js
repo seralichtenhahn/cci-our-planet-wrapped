@@ -1,6 +1,7 @@
+import { groupBy, kebabCase } from 'lodash'
+
 import NFA_2018_Detailed from '@/data/NFA_2018_Detailed.csv'
 import NFA_Historical from '@/data/NFA_Historical.csv'
-import { groupBy } from 'lodash'
 
 export default async function handler(req, res) {
   const { country } = req.query
@@ -12,14 +13,14 @@ export default async function handler(req, res) {
     return
   }
 
+  const countrySlug = kebabCase(country)
+
   const detailedData = NFA_2018_Detailed.find(
-    (entry) => entry.Country.toLowerCase() === country.toLowerCase(),
+    (entry) => kebabCase(entry.Country) === countrySlug,
   )
 
   const historicalDataByYear = groupBy(
-    NFA_Historical.filter(
-      (entry) => entry.Country.toLowerCase() === country.toLowerCase(),
-    ),
+    NFA_Historical.filter((entry) => kebabCase(entry.Country) === countrySlug),
     'Year',
   )
 
@@ -38,8 +39,7 @@ export default async function handler(req, res) {
   })
 
   return res.json({
-    country,
-    detailedData,
+    ...detailedData,
     historicalData,
   })
 }
