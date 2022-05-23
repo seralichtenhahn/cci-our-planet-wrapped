@@ -14,7 +14,7 @@ export default function SlideNavigation({ currentPage }) {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="absolute top-0 left-0 flex justify-between w-full gap-2 px-3 py-2"
+      className="absolute top-0 left-0 flex justify-between w-full gap-2 px-3 py-3"
     >
       {Array.from({ length: pages }).map((_, i) => (
         <Link key={i} href={i ? `${basePath}${i}` : basePath}>
@@ -23,7 +23,9 @@ export default function SlideNavigation({ currentPage }) {
               'block flex-1 h-1 rounded transform transition-transform hover:scale-y-[2]',
               currentPage > i ? 'bg-white' : 'bg-white/30',
             )}
-          />
+          >
+            <span className="sr-only">{`Go to page ${i}`}</span>
+          </a>
         </Link>
       ))}
     </motion.div>

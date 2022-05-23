@@ -1,8 +1,12 @@
 import React from 'react'
 import SlideNavigation from '@/components/SlideNavigation'
 import TransitionWrapper from '@/components/TransitionWrapper'
+import useCountry from '@/hooks/useCountry'
 
 export default function Country() {
+  // prefetch country data
+  useCountry()
+
   return (
     <>
       <SlideNavigation currentPage={1} />
