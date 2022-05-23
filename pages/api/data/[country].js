@@ -19,6 +19,19 @@ export default async function handler(req, res) {
     (entry) => kebabCase(entry.Country) === countrySlug,
   )
 
+  if (!detailedData) {
+    return res.status(404).json({
+      error: 'Country not found',
+    })
+  }
+
+  const details = {
+    name: detailedData.Country,
+    hdi: detailedData.HDI,
+    population_in_millions: detailedData['Population (millions)'],
+    gdp_per_capita: detailedData['Per Capita GDP'],
+  }
+
   const historicalDataByYear = groupBy(
     NFA_Historical.filter((entry) => kebabCase(entry.Country) === countrySlug),
     'Year',
@@ -39,7 +52,8 @@ export default async function handler(req, res) {
   })
 
   return res.json({
-    ...detailedData,
+    ...details,
+    detailedData,
     historicalData,
   })
 }
