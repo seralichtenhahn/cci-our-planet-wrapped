@@ -1,3 +1,4 @@
+import Button from '@/components/Button'
 import Link from 'next/link'
 import Select from '@/components/Select'
 import TransitionWrapper from '@/components/TransitionWrapper'
@@ -7,15 +8,11 @@ import { useState } from 'react'
 export default function Start() {
   const { data } = useCountries()
   const [selectedCountry, setSelectedCountry] = useState({
-    id: 0,
+    id: '',
     name: '',
   })
 
-  const countries =
-    data?.countries.map((country, index) => ({
-      name: country.name,
-      id: index,
-    })) || []
+  const countries = data?.countries || []
 
   return (
     <TransitionWrapper>
@@ -30,15 +27,12 @@ export default function Start() {
           options={countries}
         />
         <div className="flex-1">
-          <Link href="/start">
-            <a className="relative inline-block group focus:outline-none focus:ring">
-              <span className="absolute inset-0 transition-transform translate-x-1.5 translate-y-1.5 bg-green-700 group-hover:translate-y-0 group-hover:translate-x-0"></span>
-
-              <span className="relative inline-block px-8 py-3 text-sm font-bold tracking-widest text-white uppercase border-2 border-current group-active:text-opacity-75">
-                Select
-              </span>
-            </a>
-          </Link>
+          <Button
+            disabled={!selectedCountry.id}
+            href={`/slides/${selectedCountry.id}`}
+          >
+            Select
+          </Button>
         </div>
       </div>
     </TransitionWrapper>
