@@ -30,6 +30,7 @@ export default async function handler(req, res) {
     hdi: detailedData.HDI,
     population_in_millions: detailedData['Population (millions)'],
     gdp_per_capita: detailedData['Per Capita GDP'],
+    number_of_earths: detailedData['Number of Earths required'],
   }
 
   const historicalDataByYear = groupBy(
