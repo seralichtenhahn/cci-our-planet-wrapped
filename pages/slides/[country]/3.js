@@ -6,7 +6,7 @@ import TransitionWrapper from '@/components/TransitionWrapper'
 import { motion } from 'framer-motion'
 import useCountry from '@/hooks/useCountry'
 
-export default function Country() {
+export default function NumberOfEarths() {
   const { data } = useCountry()
   const [earthPosition, setEarthPosition] = useState(null)
   const ref = useRef()

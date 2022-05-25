@@ -2,6 +2,7 @@ import { groupBy, kebabCase } from 'lodash'
 
 import NFA_2018_Detailed from '@/data/NFA_2018_Detailed.csv'
 import NFA_Historical from '@/data/NFA_Historical.csv'
+import { setDayOfYear } from 'date-fns'
 
 export default async function handler(req, res) {
   const { country } = req.query
@@ -32,6 +33,11 @@ export default async function handler(req, res) {
     gdp_per_capita: detailedData['Per Capita GDP'],
     number_of_earths: detailedData['Number of Earths required'],
   }
+
+  details.overshoot_day = setDayOfYear(
+    new Date(),
+    details.number_of_earths > 1 ? 365 / details.number_of_earths : 365,
+  )
 
   const historicalDataByYear = groupBy(
     NFA_Historical.filter((entry) => kebabCase(entry.Country) === countrySlug),

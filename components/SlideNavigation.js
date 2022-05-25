@@ -14,7 +14,7 @@ export default function SlideNavigation({ currentPage }) {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="absolute top-0 left-0 flex justify-between w-full gap-2 px-3 py-3"
+      className="absolute top-0 left-0 z-50 flex justify-between w-full gap-2 px-3 py-3"
     >
       {Array.from({ length: pages }).map((_, i) => (
         <Link key={i} href={i ? `${basePath}${i}` : basePath}>
