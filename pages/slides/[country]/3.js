@@ -31,7 +31,7 @@ export default function NumberOfEarths() {
 
   return (
     <>
-      <SlideNavigation currentPage={3} />
+      <SlideNavigation currentPage={4} />
       <TransitionWrapper background="bg-primary-orange">
         <div className="flex flex-col w-full h-full text-white">
           <div className="flex flex-col gap-6 px-8 pt-12">
