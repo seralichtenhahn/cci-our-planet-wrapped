@@ -5,7 +5,7 @@ import TransitionWrapper from '@/components/TransitionWrapper'
 export default function Home() {
   return (
     <TransitionWrapper>
-      <div className="flex flex-col w-full h-full gap-6 px-8 py-8 text-white bg-primary-dark">
+      <div className="flex flex-col w-full h-full gap-8 px-8 py-8 text-white bg-primary-dark">
         <div className="relative max-w-xl aspect-square">
           <Image
             priority
