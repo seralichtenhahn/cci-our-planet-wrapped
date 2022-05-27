@@ -8,19 +8,6 @@ const nextConfig = {
     disable: process.env.NODE_ENV === 'development',
     register: true,
   },
-  webpack: (config, options) => {
-    config.module.rules.push({
-      test: /\.csv$/,
-      loader: 'csv-loader',
-      options: {
-        dynamicTyping: true,
-        header: true,
-        skipEmptyLines: true,
-      },
-    })
-
-    return config
-  },
 }
 
 module.exports = withPWA(nextConfig)

@@ -1,66 +1,70 @@
 import { groupBy, kebabCase } from 'lodash'
 
-import NFA_2018_Detailed from '@/data/NFA_2018_Detailed.csv'
-import NFA_Historical from '@/data/NFA_Historical.csv'
+import { getApiData } from '@/utils/server'
 import { setDayOfYear } from 'date-fns'
 
 export default async function handler(req, res) {
-  const { country } = req.query
+  try {
+    const { country } = req.query
 
-  if (!country) {
-    res.status(400).json({
-      error: 'Missing country query parameter',
-    })
-    return
-  }
+    if (!country) {
+      res.status(400).json({
+        error: 'Missing country query parameter',
+      })
+      return
+    }
 
-  const countrySlug = kebabCase(country)
+    const countries = await getApiData('/v1/countries')
 
-  const detailedData = NFA_2018_Detailed.find(
-    (entry) => kebabCase(entry.Country) === countrySlug,
-  )
+    const countryId = parseInt(
+      countries.find((c) => kebabCase(c.countryName) === country)
+        ?.countryCode ?? 0,
+      10,
+    )
 
-  if (!detailedData) {
-    return res.status(404).json({
-      error: 'Country not found',
-    })
-  }
+    if (!countryId) {
+      return res.status(404).json({
+        error: 'Country not found',
+      })
+    }
 
-  const details = {
-    name: detailedData.Country,
-    hdi: detailedData.HDI,
-    population_in_millions: detailedData['Population (millions)'],
-    gdp_per_capita: detailedData['Per Capita GDP'],
-    number_of_earths: detailedData['Number of Earths required'],
-  }
+    const countryData = await getApiData(`/v1/data/${countryId}`)
 
-  details.overshoot_day = setDayOfYear(
-    new Date(),
-    details.number_of_earths > 1 ? 365 / details.number_of_earths : 365,
-  )
+    const { HDI, GDP, Population, Earths, ...countryDataByType } = groupBy(
+      countryData,
+      'record',
+    )
 
-  const historicalDataByYear = groupBy(
-    NFA_Historical.filter((entry) => kebabCase(entry.Country) === countrySlug),
-    'Year',
-  )
+    const details = {
+      id: countryId,
+      name: countryData.at(-1).countryName,
+      hdi: HDI.at(-1).value,
+      population: Population.at(-1).value,
+      gdp_per_capita: GDP.at(-1).value,
+      number_of_earths: Earths.at(-1).value,
+    }
 
-  const historicalData = Object.keys(historicalDataByYear).map((year) => {
-    const entries = historicalDataByYear[year]
+    details.overshoot_day = setDayOfYear(
+      new Date(),
+      details.number_of_earths > 1 ? 365 / details.number_of_earths : 365,
+    )
 
-    return {
-      year: parseInt(year, 10),
-      types: entries.map((entry) => ({
-        land_type: entry.Land_type,
-        national_yield: entry.National_Yield,
-        world_yield: entry.World_Yield,
-        yield_factor: entry.Yield_Factor,
+    const historical = {
+      number_of_earths: Earths.map((d) => ({
+        year: d.year,
+        value: d.value,
       })),
     }
-  })
 
-  return res.json({
-    ...details,
-    detailedData,
-    historicalData,
-  })
+    return res.json({
+      ...details,
+      historical,
+    })
+  } catch (err) {
+    console.log(err)
+
+    return res.status(500).json({
+      error: 'Something went wrong',
+    })
+  }
 }
