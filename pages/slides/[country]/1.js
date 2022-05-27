@@ -60,7 +60,7 @@ export default function OvershootDay() {
         animate={{ y: `${yearProgress - 100}%` }}
         style={{ y }}
         transition={{ type: 'tween', duration: 3, ease: [0.76, 0, 0.24, 1] }}
-        className="absolute top-0 flex items-end w-full h-full bg-accrent-red"
+        className="absolute top-0 flex items-end w-full h-full bg-accent-red"
       >
         <div className="flex items-center justify-between w-full px-4 py-4 text-xl font-semibold text-white uppercase">
           <p ref={percentageLabel}>0%</p>

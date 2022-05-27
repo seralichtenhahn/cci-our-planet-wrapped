@@ -11,7 +11,7 @@ export default function Facts() {
     return <Loader />
   }
 
-  const { name, population_in_millions, gdp_per_capita, hdi } = data
+  const { name, population, gdp_per_capita, hdi } = data
 
   return (
     <>
@@ -26,8 +26,8 @@ export default function Facts() {
                   About{' '}
                   {new Intl.NumberFormat('en-GB', {
                     maximumSignificantDigits: 3,
-                  }).format(population_in_millions)}{' '}
-                  million people live here
+                  }).format(population)}{' '}
+                  people live here
                 </p>
               </li>
               <li>
@@ -42,7 +42,10 @@ export default function Facts() {
               </li>
               <li>
                 <p className="text-xl font-bold uppercase">
-                  The Human Development Index is {hdi}
+                  The Human Development Index is {}
+                  {new Intl.NumberFormat('en-GB', {
+                    maximumSignificantDigits: 2,
+                  }).format(hdi)}
                 </p>
               </li>
             </ul>
