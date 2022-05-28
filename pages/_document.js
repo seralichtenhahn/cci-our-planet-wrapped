@@ -46,7 +46,7 @@ class MyDocument extends Document {
           />
           <meta
             property="og:image"
-            content="https://yourdomain.com/icons/apple-touch-icon.png"
+            content="https://our-planet-wrapped.netlify.app/apple-touch-icon.png"
           />
         </Head>
         <body>
