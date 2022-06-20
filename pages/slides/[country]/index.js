@@ -9,7 +9,7 @@ export default function Country() {
 
   return (
     <>
-      <SlideNavigation currentPage={1} />
+      <SlideNavigation />
       <TransitionWrapper delay={1}>
         <div className="flex flex-col justify-center w-full h-full gap-6 px-8 py-8 text-white bg-primary-dark">
           <h2 className="text-4xl font-black text-center uppercase">

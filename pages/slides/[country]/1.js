@@ -54,7 +54,7 @@ export default function OvershootDay() {
 
   return (
     <>
-      <SlideNavigation currentPage={2} />
+      <SlideNavigation />
       <motion.div
         initial={{ y: '-100%' }}
         animate={{ y: `${yearProgress - 100}%` }}

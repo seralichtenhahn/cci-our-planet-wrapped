@@ -25,7 +25,7 @@ export default function HistorcialData() {
 
   return (
     <>
-      <SlideNavigation currentPage={5} />
+      <SlideNavigation />
       <TransitionWrapper background="bg-accent-red">
         <div className="flex flex-col w-full h-full gap-8 px-8 text-white">
           <div className="flex flex-col gap-6 pt-12">

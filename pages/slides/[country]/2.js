@@ -15,7 +15,7 @@ export default function Facts() {
 
   return (
     <>
-      <SlideNavigation currentPage={3} />
+      <SlideNavigation />
       <TransitionWrapper>
         <div className="flex flex-col w-full h-full gap-6 px-8 py-12 text-white bg-primary-dark">
           <h2 className="text-4xl font-black uppercase">About {name}:</h2>
