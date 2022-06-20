@@ -23,11 +23,13 @@ export default function BarChart({ width, height, data }) {
 
   let line = d3
     .line()
+    .curve(d3.curveCatmullRom)
     .x((d) => xScale(d.year))
     .y((d) => yScale(d.value))
   let d = line(data)
+
   return (
-    <svg className="" viewBox={`0 0 ${width} ${height}`}>
+    <svg viewBox={`0 0 ${width} ${height}`}>
       {xScale.ticks(5).map((year) => (
         <g
           key={year}
