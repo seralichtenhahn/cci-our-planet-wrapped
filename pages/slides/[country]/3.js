@@ -1,6 +1,7 @@
 import BallChart from '@/components/BallChart'
 import Loader from '@/components/Loader'
 import React from 'react'
+import ReadMoreButton from '@/components/ReadMoreButton'
 import SlideNavigation from '@/components/SlideNavigation'
 import TransitionWrapper from '@/components/TransitionWrapper'
 import useCountry from '@/hooks/useCountry'
@@ -11,7 +12,7 @@ export default function NumberOfEarths() {
   const { data } = useCountry()
 
   if (!data) {
-    return <Loader background="bg-primary-orange" />
+    return <Loader background="bg-accent-red" />
   }
 
   console.log(data)
@@ -25,7 +26,7 @@ export default function NumberOfEarths() {
   return (
     <>
       <SlideNavigation />
-      <TransitionWrapper background="bg-primary-orange">
+      <TransitionWrapper background="bg-accent-red">
         <div className="flex flex-col w-full h-full text-white">
           <div className="flex flex-col gap-6 px-8 pt-12">
             <h2 className="text-4xl font-black uppercase">
@@ -45,12 +46,18 @@ export default function NumberOfEarths() {
           <div ref={container} className="relative flex-1 w-full">
             <div
               aria-hidden="true"
-              className="absolute top-0 left-0 w-full h-24 pointer-events-none bg-gradient-to-t from-transparent to-primary-orange"
+              className="absolute top-0 left-0 w-full h-24 pointer-events-none bg-gradient-to-t from-transparent to-accent-red"
             />
             {height && width && (
               <BallChart width={width} height={height} data={earths} />
             )}
           </div>
+          <ReadMoreButton
+            isFloating
+            href="https://www.footprintcalculator.org/"
+          >
+            The Footprint Calculator
+          </ReadMoreButton>
         </div>
       </TransitionWrapper>
     </>
