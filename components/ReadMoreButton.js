@@ -20,13 +20,13 @@ export default function ReadMoreButton({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, y: -20 }}
         transition={{ duration: 0.5, delay: 2 }}
-        className="relative inline-block text-sm font-medium text-primary-dark group focus:outline-none focus:ring"
+        className="relative z-[100] md:z-auto inline-block text-sm font-medium text-primary-dark group focus:outline-none focus:ring"
         href={href}
         target="_blank"
         rel="noopener noreferrer"
       >
         <span className="absolute inset-0 border border-white rounded-full"></span>
-        <span className="block px-12 py-2 transition-transform -translate-x-1 -translate-y-1 bg-white border border-current rounded-full group-hover:-translate-x-0 group-hover:-translate-y-0">
+        <span className="block px-12 py-2 text-center transition-transform -translate-x-1 -translate-y-1 bg-white border border-current rounded-full group-hover:-translate-x-0 group-hover:-translate-y-0">
           {!!subTitle && (
             <span className="flex items-center justify-center gap-2 text-xs font-bold uppercase">
               <LightBulbIcon className="w-4 h-4 text-secondary-yellow" />
