@@ -1,79 +1,52 @@
-import React, { useEffect } from 'react'
-import { format, getDayOfYear, parseISO, setDayOfYear } from 'date-fns'
-import { motion, useMotionValue, useTransform } from 'framer-motion'
-import { useRef, useState } from 'react'
-
+import LineChart from '@/components/LineChart'
 import Loader from '@/components/Loader'
+import React from 'react'
+import ReadMoreButton from '@/components/ReadMoreButton'
 import SlideNavigation from '@/components/SlideNavigation'
 import TransitionWrapper from '@/components/TransitionWrapper'
-import useCountry from '@/hooks/useCountry'
+import { useMeasure } from 'react-use'
+import useWorld from '@/hooks/useWorld'
 
 export default function OvershootDay() {
-  const { data } = useCountry()
-
-  const percentageLabel = useRef(null)
-  const monthLabel = useRef(null)
-  const y = useMotionValue(0)
-
-  const currentDayOfYear = getDayOfYear(new Date())
-
-  useEffect(() => {
-    const unsubscribe = y.onChange((value) => {
-      const percentage = parseInt(value.replace('%', ''), 10) + 100
-
-      if (percentageLabel.current) {
-        percentageLabel.current.textContent = `${percentage}%`
-      }
-
-      if (monthLabel.current && data) {
-        const overshootDayOfYear = getDayOfYear(parseISO(data.overshoot_day))
-        const dayOfYear = (overshootDayOfYear / 100) * percentage
-
-        monthLabel.current.textContent = format(
-          setDayOfYear(new Date(), dayOfYear),
-          'LLLL',
-        )
-      }
-    })
-
-    return () => unsubscribe()
-  }, [y, data, currentDayOfYear])
+  const { data } = useWorld()
+  const [container, { width, height }] = useMeasure()
 
   if (!data) {
     return <Loader />
   }
 
-  const { overshoot_day, name } = data
-
-  const overshootDayOfYear = getDayOfYear(parseISO(overshoot_day))
-
-  const yearProgress =
-    currentDayOfYear >= overshootDayOfYear
-      ? 100
-      : (currentDayOfYear / overshootDayOfYear) * 100
+  const {
+    historical: { number_of_earths },
+  } = data
 
   return (
     <>
       <SlideNavigation />
-      <motion.div
-        initial={{ y: '-100%' }}
-        animate={{ y: `${yearProgress - 100}%` }}
-        style={{ y }}
-        transition={{ type: 'tween', duration: 3, ease: [0.76, 0, 0.24, 1] }}
-        className="absolute top-0 flex items-end w-full h-full bg-accent-red"
-      >
-        <div className="flex items-center justify-between w-full px-4 py-4 text-xl font-semibold text-white uppercase">
-          <p ref={percentageLabel}>0%</p>
-          <p ref={monthLabel}>January</p>
-        </div>
-      </motion.div>
-      <TransitionWrapper delay={2.5}>
-        <div className="relative flex flex-col w-full h-full gap-6 px-8 py-20 text-white">
+      <TransitionWrapper>
+        <div className="relative flex flex-col w-full h-full gap-6 px-8 pt-20 pb-4 text-white">
           <h2 className="text-4xl font-black uppercase">
-            On {format(parseISO(overshoot_day), "EEEE, eo 'of' MMMM yyyy")}{' '}
-            {name} {currentDayOfYear > overshootDayOfYear ? 'used' : 'will use'}{' '}
-            all of the Earths resources for the year.
+            There is only one earth.
           </h2>
+          <p className="font-semibold">
+            But our demand for resources exceeds our planets biocapacity.
+          </p>
+          <div ref={container} className="flex-1 w-full">
+            {height && width && (
+              <LineChart
+                width={width}
+                height={height}
+                title="Number of Earths needed over the years"
+                data={number_of_earths}
+                bgColor="#00092C"
+                yTicks={7}
+                showCircles={false}
+                pathGradient={['#FFF', '#FF6363', '#FF6363']}
+              />
+            )}
+          </div>
+          <ReadMoreButton href="https://www.footprintnetwork.org/our-work/ecological-footprint/">
+            The Ecological Footprint
+          </ReadMoreButton>
         </div>
       </TransitionWrapper>
     </>

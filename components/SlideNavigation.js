@@ -39,7 +39,7 @@ export default function SlideNavigation() {
   }
 
   return (
-    <div className="absolute z-50 grid w-full h-full grid-cols-2 md:static md:block md:h-auto">
+    <div className="absolute z-50 grid w-full h-full grid-cols-2 md:relative md:block md:h-auto">
       <div
         className="md:hidden"
         title="Previous Page"

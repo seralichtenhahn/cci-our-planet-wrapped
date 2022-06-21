@@ -3,7 +3,17 @@ import * as d3 from 'd3'
 import React from 'react'
 import { motion } from 'framer-motion'
 
-export default function BarChart({ width, height, data }) {
+export default function LineChart({
+  width,
+  height,
+  data,
+  bgColor = '#FF6363',
+  xTicks = 5,
+  yTicks = 5,
+  showCircles = true,
+  pathGradient = [],
+  title = '',
+}) {
   let margin = {
     top: 10,
     right: 16,
@@ -30,7 +40,17 @@ export default function BarChart({ width, height, data }) {
 
   return (
     <svg viewBox={`0 0 ${width} ${height}`}>
-      {xScale.ticks(5).map((year) => (
+      {!!title && (
+        <text
+          textAnchor="middle"
+          fill="currentColor"
+          transform={`translate(${width / 2}, ${height - margin.bottom / 3})`}
+          className="text-[10px]"
+        >
+          {title}
+        </text>
+      )}
+      {xScale.ticks(xTicks).map((year) => (
         <g
           key={year}
           className="text-white/80"
@@ -41,7 +61,7 @@ export default function BarChart({ width, height, data }) {
           </text>
         </g>
       ))}
-      {yScale.ticks().map((max) => (
+      {yScale.ticks(yTicks).map((max) => (
         <g
           key={max}
           className="text-white/80"
@@ -70,24 +90,38 @@ export default function BarChart({ width, height, data }) {
         transition={{ duration: 2.5, type: 'spring', delay: 0.6 }}
         d={d}
         fill="none"
-        stroke="currentColor"
         strokeWidth="2"
+        stroke={pathGradient.length ? 'url(#gradient)' : 'currentColor'}
       />
 
       {/* Circles */}
-      {data.map((d, i) => (
-        <motion.circle
-          key={d.year}
-          initial={{ r: 0 }}
-          animate={{ r: 5 }}
-          transition={{ duration: 0.3, type: 'spring', delay: i * 0.02 }}
-          cx={xScale(d.year)}
-          cy={yScale(d.value)}
-          fill="currentColor"
-          stroke="#FF6363"
-          strokeWidth={2}
-        />
-      ))}
+      {showCircles &&
+        data.map((d, i) => (
+          <motion.circle
+            key={d.year}
+            initial={{ r: 0 }}
+            animate={{ r: 5 }}
+            transition={{ duration: 0.3, type: 'spring', delay: i * 0.02 }}
+            cx={xScale(d.year)}
+            cy={yScale(d.value)}
+            fill="currentColor"
+            stroke={bgColor}
+            strokeWidth={2}
+          />
+        ))}
+      {pathGradient.length > 0 && (
+        <defs>
+          <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            {pathGradient.map((color, i) => (
+              <stop
+                key={i}
+                offset={`${(i / (pathGradient.length - 1)) * 100}%`}
+                stopColor={color}
+              />
+            ))}
+          </linearGradient>
+        </defs>
+      )}
     </svg>
   )
 }
