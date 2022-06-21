@@ -17,6 +17,9 @@ module.exports = {
         'accent-green': '#008148',
         'accent-red': '#FF6363',
       },
+      animation: {
+        'ping-slow': 'ping 3s infinite',
+      },
     },
   },
   plugins: [],

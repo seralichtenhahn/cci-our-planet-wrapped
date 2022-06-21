@@ -2,8 +2,6 @@ import * as d3 from 'd3'
 
 import React, { useEffect, useRef } from 'react'
 
-import { motion } from 'framer-motion'
-
 export default function BallChart({ width, height, data }) {
   const ref = useRef(null)
 
@@ -21,7 +19,7 @@ export default function BallChart({ width, height, data }) {
       .attr('cy', height / 2)
       .style('fill', 'url(#a)')
       .attr('stroke', '#fff')
-      .attr('class', 'cursor-grab')
+      .attr('class', 'relative cursor-grab z-[60]')
       .style('stroke-width', 1)
       .call(
         d3
@@ -75,7 +73,7 @@ export default function BallChart({ width, height, data }) {
   }, [width, height, data])
 
   return (
-    <svg ref={ref} viewBox={`0 0 ${width} ${height}`}>
+    <svg ref={ref} viewBox={`0 0 ${width} ${height}`} className="relative">
       <defs>
         <radialGradient
           id="a"

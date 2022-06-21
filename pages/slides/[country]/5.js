@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 
+import Image from 'next/image'
 import Loader from '@/components/Loader'
 import ReadMoreButton from '@/components/ReadMoreButton'
 import SlideNavigation from '@/components/SlideNavigation'
@@ -21,6 +22,16 @@ export default function MoveTheDate() {
           <div className="flex flex-col gap-2 pt-12">
             <h2 className="text-4xl font-black">#MoveTheDate</h2>
             <p>The current trend is not our destiny</p>
+          </div>
+          <div className="relative flex justify-center max-w-xl p-8 aspect-square">
+            <span className="absolute inline-flex w-[200px] h-[200px] rounded-full opacity-75 animate-ping-slow bg-sky-400"></span>
+            <Image
+              priority
+              width={200}
+              height={200}
+              src="/images/earth.svg"
+              alt="Our planet"
+            />
           </div>
           <div className="mt-auto mb-4 space-y-2">
             <p>
