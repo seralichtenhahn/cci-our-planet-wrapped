@@ -10,7 +10,8 @@ const useSlideNavigation = ({ variant }) => {
 
   const currentPage = Number(router.pathname.split('/').at(-1)) || 0
   const prevPage = currentPage > 1 ? currentPage - 1 : ''
-  const nextPage = currentPage + 1
+  const nextPage =
+    currentPage !== totalPages - 1 ? currentPage + 1 : currentPage
 
   const href =
     variant === 'next'
