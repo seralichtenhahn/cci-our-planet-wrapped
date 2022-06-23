@@ -25,9 +25,11 @@ export default function ShareTheExperience() {
       url: `${window.location.protocol}//${window.location.host}/results/${slug}`,
     }
 
-    try {
-      await navigator.share(shareData)
-    } catch (err) {
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData)
+      } catch (err) {}
+    } else {
       // not supported
       // share with twitter
       const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(

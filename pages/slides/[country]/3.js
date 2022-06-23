@@ -15,8 +15,6 @@ export default function NumberOfEarths() {
     return <Loader background="bg-accent-red" />
   }
 
-  console.log(data)
-
   const { name, number_of_earths } = data
 
   const earths = new Array(Math.ceil(number_of_earths))
