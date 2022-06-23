@@ -51,7 +51,13 @@ class MyDocument extends Document {
             property="og:image"
             content="https://our-planet-wrapped.netlify.app/images/og_image.jpg"
           />
+          <meta name="twitter:creator" content="@seralichtenhahn" />
           <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="Our Planet Wrapped" />
+          <meta
+            name="twitter:description"
+            content="A data story about the ecological footprint using data of the Global Footprint Network."
+          />
           <meta
             name="twitter:image"
             content="https://our-planet-wrapped.netlify.app/images/og_image.jpg"
