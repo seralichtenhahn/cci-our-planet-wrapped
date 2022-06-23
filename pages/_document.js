@@ -38,7 +38,10 @@ class MyDocument extends Document {
           <link rel="manifest" href="/manifest.json" />
           <meta property="og:type" content="website" />
           <meta property="og:title" content="Our Planet Wrapped" />
-          <meta property="og:description" content="Our Planet Wrapped" />
+          <meta
+            property="og:description"
+            content=" A data story about the ecological footprint using data of the Global Footprint Network."
+          />
           <meta property="og:site_name" content="Our Planet Wrapped" />
           <meta
             property="og:url"
@@ -46,7 +49,12 @@ class MyDocument extends Document {
           />
           <meta
             property="og:image"
-            content="https://our-planet-wrapped.netlify.app/apple-touch-icon.png"
+            content="https://our-planet-wrapped.netlify.app/images/og_image.jpg"
+          />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta
+            name="twitter:image"
+            content="https://our-planet-wrapped.netlify.app/images/og_image.jpg"
           />
         </Head>
         <body>
