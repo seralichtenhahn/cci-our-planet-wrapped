@@ -45,7 +45,9 @@ export default function ShareTheExperience() {
       <TransitionWrapper background="bg-accent-green">
         <div className="flex flex-col w-full h-full gap-4 px-8 pb-4 text-white">
           <div className="mt-12">
-            <h2 className="text-3xl font-black uppercase">{name} Wrapped</h2>
+            <h2 className="text-3xl font-black text-center uppercase">
+              {name} Wrapped
+            </h2>
             <p className="text-center">Share the experience!</p>
           </div>
           <div className="mt-auto space-y-2">
@@ -106,22 +108,16 @@ export default function ShareTheExperience() {
             </div>
           </div>
           <div className="mt-auto space-y-2 text-center">
-            <Button variant="secondary" onClick={shareResults}>
+            <Button
+              variant="secondary"
+              onClick={shareResults}
+              className="z-[100]"
+            >
               Share the results
             </Button>
             <Link href="/start">
               <a className="p-2 block relative underline z-[100]">Restart</a>
             </Link>
-          </div>
-          <div className="flex items-center gap-4 mx-auto">
-            <Image
-              priority
-              width={48}
-              height={48}
-              src="/images/earth.svg"
-              alt="Our planet"
-            />
-            <h3 className="text-2xl font-bold">Our Planet Wrapped</h3>
           </div>
         </div>
       </TransitionWrapper>

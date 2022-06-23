@@ -7,6 +7,7 @@ export default function Button({
   children,
   disabled = false,
   variant = 'primary',
+  className,
   ...props
 }) {
   const Component = href ? 'a' : 'button'
@@ -16,6 +17,7 @@ export default function Button({
       className={clsx(
         'relative inline-block group focus:outline-none focus:ring',
         disabled && 'opacity-50 cursor-not-allowed pointer-events-none',
+        className,
       )}
       {...props}
     >
