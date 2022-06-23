@@ -37,6 +37,7 @@ export default async function handler(req, res) {
 
     const details = {
       id: countryId,
+      slug: country,
       name: countryData.at(-1).countryName,
       hdi: HDI.at(-1).value,
       population: Population.at(-1).value,
