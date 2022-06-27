@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <TransitionWrapper>
       <div className="flex flex-col w-full h-full gap-8 px-8 py-8 text-white bg-primary-dark">
-        <div className="relative max-w-xl aspect-square">
+        <div className="relative w-full max-w-xl mx-auto aspect-square">
           <Image
             priority
             src="/images/earth.svg"
@@ -21,7 +21,15 @@ export default function Home() {
           <Button href="/start">Get Started</Button>
         </div>
         <p className="text-center text-gray-400">
-          A project by Serafin Lichtenhahn<span className="mx-2">·</span>Data by{' '}
+          A project by{' '}
+          <a
+            href="https://twitter.com/seralichtenhahn"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Serafin Lichtenhahn
+          </a>
+          <span className="mx-2">·</span>Data by{' '}
           <a
             href="https://www.footprintnetwork.org/"
             target="_blank"
