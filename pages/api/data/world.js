@@ -13,7 +13,6 @@ export default async function handler(req, res) {
     const details = {
       name: 'world',
       population: Population.at(-1).value,
-      gdp_per_capita: GDP.at(-1).value,
       number_of_earths: Earths.at(-1).value,
     }
 

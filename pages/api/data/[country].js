@@ -41,7 +41,6 @@ export default async function handler(req, res) {
       name: countryData.at(-1).countryName,
       hdi: HDI.at(-1).value,
       population: Population.at(-1).value,
-      gdp_per_capita: GDP.at(-1).value,
       number_of_earths: Earths.at(-1).value,
     }
 
